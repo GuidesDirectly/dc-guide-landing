@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guides Directly — Washington DC Tour Guides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628; --navy-mid: #122040; --navy-light: #1a3260;
+    --gold: #c9a84c; --gold-light: #e6c06b;
+    --white: #ffffff; --text-muted: #8a9bb5;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Poppins', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 5%; background: rgba(10,22,40,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.18); }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--gold); letter-spacing: 0.02em; }
+  .logo span { color: var(--white); }
+  .nav-cta { background: var(--gold); color: var(--navy); border: none; border-radius: 50px; padding: 10px 24px; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 5% 80px; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(10,22,40,0.88) 0%, rgba(10,22,40,0.70) 50%, rgba(10,22,40,0.92) 100%), url('https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=1600&q=80') center/cover no-repeat; z-index: 0; }
+  .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(201,168,76,0.12) 0%, transparent 70%); }
+  .hero-content { position: relative; z-index: 1; max-width: 880px; }
+  .hero-eyebrow { display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4); color: var(--gold); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 7px 18px; border-radius: 50px; margin-bottom: 28px; animation: fadeDown 0.8s ease both; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 900; line-height: 1.12; margin-bottom: 22px; animation: fadeUp 0.9s 0.1s ease both; }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero-sub { font-size: clamp(1rem, 2.2vw, 1.15rem); font-weight: 300; color: rgba(255,255,255,0.82); line-height: 1.7; max-width: 660px; margin: 0 auto 32px; animation: fadeUp 0.9s 0.2s ease both; }
+  .hero-badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; animation: fadeUp 0.9s 0.25s ease both; }
+  .hero-badge { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 50px; padding: 8px 18px; font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.85); }
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.9s 0.3s ease both; }
+  .btn-primary { background: var(--gold); color: var(--navy); padding: 16px 36px; border-radius: 50px; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; box-shadow: 0 8px 30px rgba(201,168,76,0.35); }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.45); }
+  .btn-outline { background: transparent; color: var(--white); padding: 15px 34px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; border: 2px solid rgba(255,255,255,0.4); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .spots-bar { margin-top: 44px; display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; animation: fadeUp 0.9s 0.45s ease both; }
+  .spots-pill { background: rgba(192,57,43,0.18); border: 1px solid rgba(192,57,43,0.5); color: #e74c3c; padding: 8px 20px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: #e74c3c; animation: pulse 1.4s infinite; display: inline-block; }
+  .countdown-wrap { display: flex; align-items: center; gap: 6px; }
+  .countdown-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+  .countdown-timer { display: flex; gap: 6px; }
+  .cd-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 5px 10px; text-align: center; min-width: 44px; }
+  .cd-num { font-size: 1.1rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .cd-lbl { font-size: 0.58rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .cd-sep { font-size: 1.1rem; color: var(--gold); font-weight: 700; line-height: 2; }
+
+  /* SECTIONS */
+  section { padding: 90px 5%; }
+  .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+  .section-sub { color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.7; }
+  .container { max-width: 1160px; margin: 0 auto; }
+  .gold-divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; margin: 16px 0 28px; }
+  .center-divider { margin: 16px auto 28px; }
+
+  /* OTA DAMAGE */
+  .ota-section { background: linear-gradient(135deg, #0e1f3d 0%, #0a1628 100%); position: relative; overflow: hidden; }
+  .ota-section::before { content: ''; position: absolute; top: -200px; right: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%); border-radius: 50%; }
+  .ota-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  @media(max-width:768px){ .ota-layout { grid-template-columns: 1fr; gap: 40px; } }
+  .ota-list { list-style: none; margin-top: 28px; }
+  .ota-list li { display: flex; align-items: flex-start; gap: 14px; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.97rem; color: rgba(255,255,255,0.78); line-height: 1.55; transition: color 0.2s; }
+  .ota-list li:hover { color: var(--white); }
+  .ota-x { width: 26px; height: 26px; border-radius: 50%; background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.45); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; color: #e74c3c; flex-shrink: 0; margin-top: 2px; }
+  .ota-resolution { background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04)); border: 1px solid rgba(201,168,76,0.28); border-radius: 24px; padding: 44px 38px; text-align: center; }
+  .ota-resolution .big-text { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 700; color: var(--gold-light); line-height: 1.45; margin-bottom: 18px; }
+  .ota-resolution .resolution-sub { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 28px; }
+  .ota-resolution .resolution-em { font-size: 1.05rem; font-weight: 600; color: var(--white); line-height: 1.6; font-style: italic; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 22px; margin-top: 4px; }
+
+  /* FOUNDING BENEFITS */
+  .benefits-section { background: var(--navy-mid); }
+  .benefits-intro { max-width: 720px; margin-bottom: 56px; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .benefit-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.18); border-radius: 16px; padding: 26px 28px; display: flex; align-items: flex-start; gap: 18px; transition: transform 0.22s, border-color 0.22s; }
+  .benefit-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.45); }
+  .benefit-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+  .benefit-text h4 { font-size: 0.98rem; font-weight: 700; color: var(--gold-light); margin-bottom: 5px; }
+  .benefit-text p { font-size: 0.85rem; color: rgba(255,255,255,0.58); line-height: 1.6; }
+
+  /* TRUST */
+  .trust-section { background: linear-gradient(135deg, #0e1f3d 0%, #091525 100%); text-align: center; }
+  .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 28px; margin-top: 52px; }
+  .trust-stat { padding: 32px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
+  .trust-stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; color: var(--gold); }
+  .trust-stat-lbl { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 6px; }
+
+  /* GUIDE TYPES */
+  .types-section { background: var(--navy); }
+  .types-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 13px; margin-top: 44px; }
+  .type-pill { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 13px 16px; font-size: 0.87rem; font-weight: 500; transition: all 0.2s; }
+  .type-pill:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.4); color: var(--gold-light); transform: translateY(-2px); }
+  .type-check { color: var(--gold); font-size: 0.95rem; flex-shrink: 0; }
+
+  /* FORM */
+  .form-section { background: linear-gradient(135deg, var(--navy-mid) 0%, #0e1e3a 100%); }
+  .form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: start; }
+  @media(max-width:840px){ .form-wrap { grid-template-columns: 1fr; gap: 40px; } }
+  .form-left .form-perks { margin-top: 32px; list-style: none; }
+  .form-left .form-perks li { display: flex; align-items: center; gap: 12px; padding: 11px 0; font-size: 0.92rem; color: rgba(255,255,255,0.72); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .form-left .form-perks li span { color: var(--gold); font-size: 1rem; }
+  .form-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); border-radius: 24px; padding: 44px 40px; box-shadow: 0 30px 80px rgba(0,0,0,0.4); }
+  .form-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 6px; }
+  .form-card .form-note { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 26px; }
+  .form-group { margin-bottom: 17px; }
+  .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 6px; letter-spacing: 0.05em; }
+  .form-group input, .form-group select { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 13px 16px; color: var(--white); font-family: 'Poppins', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .form-group select option { background: var(--navy-mid); color: var(--white); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+  .submit-btn { width: 100%; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); border: none; border-radius: 12px; padding: 18px; margin-top: 8px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 8px 25px rgba(201,168,76,0.3); }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 35px rgba(201,168,76,0.45); }
+  .form-disclaimer { font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 12px; }
+
+  /* FAQ */
+  .faq-section { background: var(--navy-mid); }
+  .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 48px; }
+  .faq-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 15px; padding: 26px 24px; transition: border-color 0.2s; }
+  .faq-item:hover { border-color: rgba(201,168,76,0.3); }
+  .faq-q { font-size: 0.94rem; font-weight: 700; color: var(--gold-light); margin-bottom: 10px; }
+  .faq-a { font-size: 0.87rem; color: rgba(255,255,255,0.58); line-height: 1.65; }
+
+  /* FINAL CTA */
+  .final-cta { background: linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 100%); text-align: center; position: relative; overflow: hidden; }
+  .final-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.1) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(26,50,96,0.6) 0%, transparent 60%); }
+  .final-cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .final-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; line-height: 1.2; margin-bottom: 18px; }
+  .final-cta h2 em { color: var(--gold); font-style: normal; }
+  .final-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.7); margin-bottom: 38px; line-height: 1.7; }
+
+  /* FOOTER */
+  footer { background: #060e1c; padding: 36px 5%; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.3); border-top: 1px solid rgba(255,255,255,0.06); }
+  footer strong { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform:none; } }
+  @keyframes fadeDown { from { opacity:0; transform: translateY(-20px); } to { opacity:1; transform:none; } }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.4); } }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media(max-width:600px) { section { padding: 64px 5%; } .form-card { padding: 30px 22px; } .ota-resolution { padding: 30px 22px; } }
+  .form-success { display: none; text-align: center; padding: 40px 20px; }
+  .form-success .check-circle { width: 72px; height: 72px; border-radius: 50%; background: rgba(201,168,76,0.15); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px; }
+  .form-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
+  .form-success p { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.65; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Guides<span>Directly</span></div>
+  <a href="#apply" class="nav-cta">Apply Now →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">🗺️ Beta Launch — Washington DC</div>
+    <h1>Washington DC Tour Guides:<br><em>Stop Renting Customers.<br>Start Owning Your Business.</em></h1>
+    <p class="hero-sub">OTAs don't just take your commission — they take control of your travelers, your relationships, and your future. Guides Directly gives it all back to you.</p>
+    <div class="hero-badges">
+      <div class="hero-badge">💬 Direct Traveler Contact</div>
+      <div class="hero-badge">💰 Zero Commission</div>
+      <div class="hero-badge">🔓 You Own Your Business</div>
+    </div>
+    <div class="hero-buttons">
+      <a href="#apply" class="btn-primary">✅ Apply as a Guide</a>
+      <a href="#apply" class="btn-outline">⭐ Become Founding Member</a>
+    </div>
+    <div class="spots-bar">
+      <div class="spots-pill"><span class="pulse"></span>Only 45 Founding Spots Left</div>
+      <div class="countdown-wrap">
+        <span class="countdown-label">Offer closes in:</span>
+        <div class="countdown-timer">
+          <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">Days</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hrs</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Min</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Sec</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OTA DAMAGE -->
+<section class="ota-section">
+  <div class="container">
+    <div class="ota-layout">
+      <div class="reveal">
+        <div class="section-label">The Real Cost of OTAs</div>
+        <h2 class="section-title">They Don't Just Take Your Commission.<br><span style="color:var(--gold)">They Take Control of Your Business.</span></h2>
+        <div class="gold-divider"></div>
+        <ul class="ota-list">
+          <li><span class="ota-x">✕</span><span>You can't contact your travelers before the tour — making it harder to prepare, personalize experiences, or handle emergencies</span></li>
+          <li><span class="ota-x">✕</span><span>OTAs keep your client information — preventing you from building long-term relationships and repeat business</span></li>
+          <li><span class="ota-x">✕</span><span>25–35% commission on every booking — while the platform limits your access to your own guests</span></li>
+          <li><span class="ota-x">✕</span><span>Algorithms control your visibility — one system change can erase years of rankings, reviews, and momentum overnight</span></li>
+          <li><span class="ota-x">✕</span><span>You keep paying to "reacquire" the same customers — instead of building a loyal audience that belongs to you</span></li>
+          <li><span class="ota-x">✕</span><span>Your reputation lives on someone else's platform — not in a business you truly own</span></li>
+        </ul>
+      </div>
+      <div class="ota-resolution reveal">
+        <div class="big-text">"You work hard to build unforgettable experiences."</div>
+        <p class="resolution-sub">You should own the relationships, reviews, and income that come with them — not rent them from a platform that treats your travelers as their asset.</p>
+        <p class="resolution-em">Guides Directly was built to change that. Permanently.</p>
+        <br>
+        <a href="#apply" class="btn-primary" style="font-size:0.9rem;padding:14px 30px;">Claim Your Founding Spot →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING BENEFITS -->
+<section class="benefits-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Founding DC Guides</div>
+      <h2 class="section-title">Build a Tour Business That Truly Belongs to You</h2>
+      <div class="gold-divider"></div>
+      <p class="section-sub benefits-intro">Only the first 50 founding guides will receive permanent early-member advantages. Here's what you get when you join Guides Directly from day one.</p>
+    </div>
+    <div class="benefits-grid reveal">
+      <div class="benefit-card">
+        <div class="benefit-icon">💬</div>
+        <div class="benefit-text"><h4>Direct Communication With Travelers</h4><p>Contact every traveler directly from the very first inquiry — no OTA walls, no clunky messaging apps. Real human connection before, during, and after every tour.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <div class="benefit-text"><h4>Zero Commission — Keep 100%</h4><p>Every dollar a traveler pays goes directly to you. No 25–35% cuts. No hidden fees. Your price is your income — period.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">👥</div>
+        <div class="benefit-text"><h4>Build Your Own Loyal Client Base</h4><p>Your guests stay with you — not with the platform. Follow up, re-invite, build referrals. Create a business that grows with every tour you give.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⭐</div>
+        <div class="benefit-text"><h4>Your Reviews Stay With You</h4><p>Your reputation and reviews are permanently attached to your profile on Guides Directly — not held hostage by a platform that can remove them overnight.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🏅</div>
+        <div class="benefit-text"><h4>Exclusive Founding Guide Badge</h4><p>A permanent badge displayed on your profile marking you as one of the original 50 DC guides who helped build this platform from the ground up.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📈</div>
+        <div class="benefit-text"><h4>Priority Placement at Launch</h4><p>Founding guides appear first when travelers search — giving you maximum visibility and bookings from the moment the platform opens to the public.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🛠️</div>
+        <div class="benefit-text"><h4>Shape the Platform's Future</h4><p>Help design features built specifically for guides. Your direct input shapes how Guides Directly evolves — because you helped build it.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🚫</div>
+        <div class="benefit-text"><h4>No Hidden Algorithms</h4><p>No mysterious ranking systems deciding your future. Your visibility is based on your profile and reviews — transparent, fair, and in your control.</p></div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🏆</div>
+        <div class="benefit-text"><h4>Be Your Own Boss. Completely.</h4><p>Set your own prices, policies, schedule, and experience style. No platform telling you how to run your business. This is yours.</p></div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:52px">
+      <p style="font-size:1.1rem;font-weight:600;color:var(--gold-light);margin-bottom:20px">Stop renting customers from OTAs.</p>
+      <a href="#apply" class="btn-primary" style="font-size:1rem;padding:18px 48px;">Claim My Founding Spot →</a>
+      <p style="margin-top:14px;font-size:0.82rem;color:var(--text-muted)">⚡ Only 45 of 50 spots remaining · Founding rate locked forever</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label">Built on Experience</div>
+      <h2 class="section-title">Built by Real Travel Professionals</h2>
+      <div class="gold-divider center-divider"></div>
+      <p class="section-sub" style="max-width:580px;margin:0 auto;">Founded by licensed guides who lived every frustration this platform solves. We didn't guess at your problems — we experienced them firsthand.</p>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-stat"><div class="trust-stat-num">DC</div><div class="trust-stat-lbl">Beta Launch City</div></div>
+      <div class="trust-stat"><div class="trust-stat-num">0%</div><div class="trust-stat-lbl">Commission. Forever.</div></div>
+      <div class="trust-stat"><div class="trust-stat-num">100%</div><div class="trust-stat-lbl">Direct Traveler Access</div></div>
+      <div class="trust-stat"><div class="trust-stat-num">50</div><div class="trust-stat-lbl">Founding Spots Total</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE TYPES -->
+<section class="types-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Who We Want</div>
+      <h2 class="section-title">We're Looking For</h2>
+      <div class="gold-divider"></div>
+      <p class="section-sub">If you're a local DC expert in any of these specialties, there's a founding spot with your name on it.</p>
+    </div>
+    <div class="types-grid reveal">
+      <div class="type-pill"><span class="type-check">✓</span> History Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> Black History Specialists</div>
+      <div class="type-pill"><span class="type-check">✓</span> Museum Experts</div>
+      <div class="type-pill"><span class="type-check">✓</span> Food Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> Night Tour Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> Spanish Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> French Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> Hebrew Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> Russian Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> VIP / Private Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> Driver Guides</div>
+      <div class="type-pill"><span class="type-check">✓</span> Other Specialties</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="apply">
+  <div class="container">
+    <div class="form-wrap">
+      <div class="form-left reveal">
+        <div class="section-label">2-Minute Application</div>
+        <h2 class="section-title">Become a Founding DC Guide</h2>
+        <div class="gold-divider"></div>
+        <p class="section-sub">Only the first 50 founding guides receive permanent early-member advantages. Secure your spot before they're gone.</p>
+        <ul class="form-perks">
+          <li><span>💬</span> Direct contact with every traveler from day one</li>
+          <li><span>💰</span> Zero commission — keep 100% of your earnings</li>
+          <li><span>👥</span> Build a loyal client base that belongs to you</li>
+          <li><span>⭐</span> Your reviews stay with your profile. Forever.</li>
+          <li><span>🏅</span> Exclusive Founding Guide Badge on your profile</li>
+          <li><span>🏆</span> Set your own prices, schedule, and policies</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="form-card">
+          <h3>Apply Now</h3>
+          <div class="form-note">⏱️ Takes only 2 minutes — no commitment required</div>
+          <div id="appForm">
+            <div class="form-group"><label>FULL NAME</label><input type="text" id="f-name" placeholder="Your full name" /></div>
+            <div class="form-group"><label>EMAIL ADDRESS</label><input type="email" id="f-email" placeholder="your@email.com" /></div>
+            <div class="form-group"><label>PHONE / WHATSAPP</label><input type="tel" id="f-phone" placeholder="+1 (202) 000-0000" /></div>
+            <div class="form-row">
+              <div class="form-group"><label>LANGUAGES</label><input type="text" id="f-lang" placeholder="English, Spanish…" /></div>
+              <div class="form-group"><label>YEARS EXPERIENCE</label><select id="f-years"><option value="">Select…</option><option>Less than 1 year</option><option>1–3 years</option><option>4–7 years</option><option>8–15 years</option><option>15+ years</option></select></div>
+            </div>
+            <div class="form-group"><label>TYPE OF TOURS</label><select id="f-type"><option value="">Select your specialty…</option><option>History Tours</option><option>Black History Tours</option><option>Museum Tours</option><option>Food Tours</option><option>Night Tours</option><option>VIP / Private Tours</option><option>Driver Guide</option><option>Other</option></select></div>
+            <button class="submit-btn" onclick="submitForm()">Apply Now — Claim My Founding Spot ✓</button>
+            <p class="form-disclaimer">No spam. No commitment. We'll be in touch within 48 hours.</p>
+          </div>
+          <div class="form-success" id="formSuccess">
+            <div class="check-circle">✓</div>
+            <h3>Application Received!</h3>
+            <p>Welcome to the Guides Directly family. We'll review your application and be in touch within 48 hours.<br><br>You're one of the founding DC guides — we're excited to build this together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Questions</div>
+      <h2 class="section-title">Frequently Asked</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-item"><div class="faq-q">Can I really contact travelers directly?</div><div class="faq-a">Yes — from the very first inquiry. You receive the traveler's contact details immediately so you can communicate directly, prepare personally, and build a real relationship from day one.</div></div>
+      <div class="faq-item"><div class="faq-q">Is the zero commission truly permanent?</div><div class="faq-a">Yes. Guides Directly charges a flat platform fee — never a percentage of your booking. You keep 100% of every tour price you set. No hidden cuts, ever.</div></div>
+      <div class="faq-item"><div class="faq-q">Do my reviews stay with me?</div><div class="faq-a">Yes. Your reviews and reputation live permanently on your Guides Directly profile — they belong to you, not to the platform. No algorithm can remove or hide them.</div></div>
+      <div class="faq-item"><div class="faq-q">Can I set my own prices and policies?</div><div class="faq-a">Completely. You set your own rates, cancellation policies, group sizes, and experience style. This is your business — we just provide the platform.</div></div>
+      <div class="faq-item"><div class="faq-q">Can part-time guides join?</div><div class="faq-a">Yes. Whether you guide full-time or a few weekends a month, you're welcome. You set your own availability and accept bookings on your terms.</div></div>
+      <div class="faq-item"><div class="faq-q">When does the platform launch publicly?</div><div class="faq-a">We are in beta in Washington DC right now. Founding guides receive full access and priority visibility before the public launch — with their founding rate locked forever.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta-content reveal">
+      <div class="section-label">The Future of Tour Guiding</div>
+      <h2>Your Travelers. Your Reviews.<br><em>Your Business. Forever.</em></h2>
+      <p>Join the first 50 DC guides who are building a business they truly own — with direct traveler contact, zero commission, and complete control from day one.</p>
+      <a href="#apply" class="btn-primary" style="font-size:1.05rem;padding:20px 56px;">Apply Now — It's Free →</a>
+      <p style="margin-top:16px;font-size:0.82rem;color:var(--text-muted)">2-minute application · No commitment required · 45 spots left</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong>Guides Directly</strong> · Washington DC Beta Launch · All Rights Reserved</p>
+  <p style="margin-top:8px">Questions? Email us at <strong>michael@guidesdirectly.com</strong></p>
+</footer>
+
+<script>
+  const deadline = new Date('2026-07-04T23:59:59').getTime();
+  function updateCountdown(){const now=new Date().getTime();const diff=deadline-now;if(diff<=0){document.getElementById('cd-d').textContent='00';document.getElementById('cd-h').textContent='00';document.getElementById('cd-m').textContent='00';document.getElementById('cd-s').textContent='00';return;}const d=Math.floor(diff/(1000*60*60*24));const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));const m=Math.floor((diff%(1000*60*60))/(1000*60));const s=Math.floor((diff%(1000*60))/1000);document.getElementById('cd-d').textContent=String(d).padStart(2,'0');document.getElementById('cd-h').textContent=String(h).padStart(2,'0');document.getElementById('cd-m').textContent=String(m).padStart(2,'0');document.getElementById('cd-s').textContent=String(s).padStart(2,'0');}
+  setInterval(updateCountdown,1000);updateCountdown();
+  const reveals=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);observer.unobserve(e.target);}});},{threshold:0.12});reveals.forEach(el=>observer.observe(el));
+  function submitForm(){const name=document.getElementById('f-name').value.trim();const email=document.getElementById('f-email').value.trim();if(!name||!email){alert('Please enter your name and email to apply.');return;}document.getElementById('appForm').style.display='none';document.getElementById('formSuccess').style.display='block';}
+</script>
+</body>
+</html>
