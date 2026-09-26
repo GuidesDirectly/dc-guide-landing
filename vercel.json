@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/((?!robots\\.txt$).*)",
+      "destination": "https://guidesdirectly.com/founding-500",
+      "permanent": true
+    }
+  ]
+}
